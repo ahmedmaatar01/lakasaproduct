@@ -31,8 +31,8 @@ class ProductController extends Controller
             'longeur' => 'required|numeric',
             'hauteur' => 'required|numeric',
             'category_id' => 'required|exists:categories,id',
-            'image_avant' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image_avant' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         $product = Product::create($validated);
@@ -74,8 +74,8 @@ class ProductController extends Controller
             'longeur' => 'required|numeric',
             'hauteur' => 'required|numeric',
             'category_id' => 'required|exists:categories,id',
-            'image_avant' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image_avant' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         $product = Product::findOrFail($id);

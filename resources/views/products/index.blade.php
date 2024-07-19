@@ -15,10 +15,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Description</th>
                                 <th>Price per Square Meter</th>
-                                <th>Length</th>
-                                <th>Height</th>
                                 <th>Category</th>
                                 <th>Featured Image</th>
                                 <th>Actions</th>
@@ -29,10 +26,7 @@
                                 <tr>
                                     <td>{{ $product->id }}</td>
                                     <td>{{ $product->name }}</td>
-                                    <td>{{ $product->description }}</td>
                                     <td>{{ $product->prix_metre_carre }}</td>
-                                    <td>{{ $product->longeur }}</td>
-                                    <td>{{ $product->hauteur }}</td>
                                     <td>{{ $product->category->name }}</td>
                                     <td>
                                         @if ($product->featuredImage)

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\HomePageContent;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -10,8 +11,9 @@ class HomePageContentController extends Controller
 {
     public function index()
     {
+        $products = Product::inRandomOrder()->take(3)->with('featuredImage')->get();
         $content = HomePageContent::first();
-        return view('welcome', compact('content'));
+        return view('homePage.index', compact('content','products'));
     }
     public function edit()
     {
