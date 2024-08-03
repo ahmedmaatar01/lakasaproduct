@@ -260,5 +260,22 @@
         }
     }
 })(jQuery);
-
+function formatOption(option) {
+    if (!option.id) {
+        return option.text;
+    }
+    var imgSrc = $(option.element).data('img-src');
+    var description = $(option.element).data('description');
+    var $option = $(
+        '<div class="select2-result-option">' +
+            '<img src="' + imgSrc +
+            '" class="img-option" style="width: 50px; height: 50px; margin-right: 10px;"/>' +
+            '<div class="select2-text-section">' +
+                '<strong>' + option.text + '</strong><br/>' +
+                '<small>' + description + '</small>' +
+            '</div>'+
+        '</div>'
+    );
+    return $option;
+}
 $("select.f-dropdown").mySelectDropdown();

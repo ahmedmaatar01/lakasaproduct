@@ -8,7 +8,14 @@
 .f-dropdown select {
     display: none;
 }
+.select2-result-option {
+    display: flex;
+    align-items: center;
+}
 
+.img-option {
+    margin-right: 10px;
+}
 span.selection {
     width: 100%;
 }

@@ -474,36 +474,9 @@
     });
 </script>
 
-<style>
-    .select2-result-option {
-        display: flex;
-        align-items: center;
-    }
-
-    .img-option {
-        margin-right: 10px;
-    }
-</style>
 <script>
     $(document).ready(function() {
-        function formatOption(option) {
-            if (!option.id) {
-                return option.text;
-            }
-            var imgSrc = $(option.element).data('img-src');
-            var description = $(option.element).data('description');
-            var $option = $(
-                '<div class="select2-result-option">' +
-                    '<img src="' + imgSrc +
-                    '" class="img-option" style="width: 50px; height: 50px; margin-right: 10px;"/>' +
-                    '<div class="select2-text-section">' +
-                        '<strong>' + option.text + '</strong><br/>' +
-                        '<small>' + description + '</small>' +
-                    '</div>'+
-                '</div>'
-            );
-            return $option;
-        }
+
 
         $('#custom-select').select2({
             templateResult: formatOption,
@@ -514,5 +487,4 @@
     });
 </script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
