@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Lakasa product</title>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&amp;display=swap"
@@ -25,6 +27,10 @@
 
     <!-- Core Style Css -->
     <link rel="stylesheet" href="{{ asset('template-front/assets/css/style.css') }}">
+
+    <!-- custom inputs Css -->
+    <link rel="stylesheet" href="{{ asset('template-front/assets/css/custom-inputs.css') }}">
+
 
 </head>
 
@@ -484,6 +490,8 @@
 
     <!-- custom scripts -->
     <script src="{{ asset('template-front/assets/js/scripts.js') }}"></script>
+
+
 
 
 </body>

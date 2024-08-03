@@ -28,14 +28,20 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'prix_metre_carre' => 'required|numeric',
-            'longeur' => 'required|numeric',
-            'hauteur' => 'required|numeric',
             'category_id' => 'required|exists:categories,id',
             'image_avant' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
-        $product = Product::create($validated);
+        $product = new Product();
+        $product->name = $request->name;
+        $product->prix_metre_carre = $request->prix_metre_carre;
+        $product->category_id = $request->category_id;
+        $product->description = $request->description;
+        $product->interrepteur = $request->has('interrepteur') ? 1 : 0;
+        $product->led = $request->has('led') ? 1 : 0;
+
+        $product->save();
 
         $img_en_avant = $request->file('image_avant');
         $img_av_path = $img_en_avant->store('images', 'public');
@@ -62,7 +68,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('products.edit', compact('product','categories'));
+        return view('products.edit', compact('product', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -71,15 +77,13 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'prix_metre_carre' => 'required|numeric',
-            'longeur' => 'required|numeric',
-            'hauteur' => 'required|numeric',
             'category_id' => 'required|exists:categories,id',
             'image_avant' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         $product = Product::findOrFail($id);
-        
+
 
         if ($request->hasFile('image_avant')) {
             // Delete old featured image if exists
@@ -114,7 +118,15 @@ class ProductController extends Controller
                 ]);
             }
         }
-        $product->update($validated);
+
+        $product->name = $request->name;
+        $product->prix_metre_carre = $request->prix_metre_carre;
+        $product->category_id = $request->category_id;
+        $product->description = $request->description;
+        $product->interrepteur = $request->has('interrepteur') ? 1 : 0;
+        $product->led = $request->has('led') ? 1 : 0;
+
+        $product->save();
         return response()->json([
             'status' => 'success',
             'message' => 'Product updated successfully.',
@@ -123,7 +135,18 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        if ($product->featuredImage) {
+            Storage::disk('public')->delete($product->featuredImage->image_path);
+            $product->featuredImage->delete();
+        }
         $product->delete();
-        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
+        foreach ($product->images as $image) {
+            Storage::disk('public')->delete($image->image_path);
+            $image->delete();
+        }
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Product deleted successfully.',
+        ]);
     }
 }

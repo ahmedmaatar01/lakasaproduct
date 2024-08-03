@@ -25,13 +25,22 @@
                     <label for="prix_metre_carre" class="form-label">Price per Square Meter</label>
                     <input type="number" step="0.01" class="form-control" id="prix_metre_carre" name="prix_metre_carre" value="{{ $product->prix_metre_carre }}" required>
                 </div>
-                <div class="mb-3">
-                    <label for="longeur" class="form-label">Length</label>
-                    <input type="number" step="0.01" class="form-control" id="longeur" name="longeur" value="{{ $product->longeur }}" required>
-                </div>
-                <div class="mb-3">
-                    <label for="hauteur" class="form-label">Height</label>
-                    <input type="number" step="0.01" class="form-control" id="hauteur" name="hauteur" value="{{ $product->hauteur }}" required>
+                <div class="mb-3 d-flex ">
+                    <label class="custom-control custom-checkbox-md me-5">
+                        <input type="checkbox" class="custom-control-input" name="interrepteur" value="interrepteur"
+                        @if($product->interrepteur=="1") 
+                        checked=""
+                        @endif >
+                        <span class="custom-control-label">Interrepteur</span>
+                    </label>
+                    <label class="custom-control custom-checkbox-md">
+                        <input type="checkbox" class="custom-control-input" name="led" value="led"
+                            @if($product->led=="1") 
+                            checked=""
+                            @endif 
+                        >
+                        <span class="custom-control-label">Led</span>
+                    </label>
                 </div>
                 <div class="mb-3">
                     <label for="category_id" class="form-label">Category</label>
@@ -89,7 +98,7 @@
                 success: function(response) {
                     if (response.status == 'success') {
                         $('#myModalXl').modal('hide');
-                        // window.location.reload();
+                        window.location.reload();
                     }
                 },
                 error: function(xhr) {

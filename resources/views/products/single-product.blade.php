@@ -39,37 +39,93 @@
                 <div class="col-lg-6 offset-lg-1">
                     <div class="product-info">
                         <div class="top-info">
-                            <h6 class="main-color4">$130.00</h6>
+                            <h6 class="main-color4"> <span id="prix-produit">130</span> Dt</h6>
                             <div class="d-flex align-items-center">
                                 <div>
                                     <h4 class="line-height-1">{{ $product->name }}</h4>
                                 </div>
-                                
+
 
                             </div>
-                            
+
                             <div class="text mt-30">
                                 <p>{{ $product->description }}</p>
                             </div>
+
                         </div>
-                        <div class="bord-thin-top">
+                        <div class="bord-thin-top row">
                             <!-- Select inputs start here -->
-                            <div class="form-group">
-                                <label for="sizeSelect">Select Size</label>
-                                <select class="form-control dark-select" id="sizeSelect">
-                                    <option>Small</option>
-                                    <option>Medium</option>
-                                    <option>Large</option>
-                                    <option>Extra Large</option>
+
+                            <div class="f-group col-md-12 mt-5">
+                                <label>Cadre</label>
+                                <select class="f-control f-dropdown" placeholder="selectionner un cadre" name="cadre">
+                                    <option value="discret"
+                                        data-image="{{ asset('template-front/assets/imgs/produit/cadre1.webp') }}">cadre
+                                        discret</option>
+                                    <option value="apparent"
+                                        data-image="{{ asset('template-front/assets/imgs/produit/cadre2.webp') }}">cadre
+                                        apparent</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="colorSelect">Select Color</label>
-                                <select class="form-control dark-select" id="colorSelect">
-                                    <option>Red</option>
-                                    <option>Green</option>
-                                    <option>Blue</option>
-                                    <option>Black</option>
+
+                            <div class="f-group col-md-6 mt-5 d-flex flex-column ">
+                                <label>langeur</label>
+                                <input type="number" class="f-control f-number" style="color: #fff;" name="langeur"
+                                    id="langeur" min="40" max="200" value="80">
+                            </div>
+                            <div class="f-group col-md-6 mt-5 d-flex flex-column">
+                                <label>largeur</label>
+                                <input type="number" class="f-control f-number" style="color: #fff;" name="largeur"
+                                    id="largeur" min="40" max="200" value="60">
+
+                            </div>
+                            <div class="f-group col-md-12 mt-5">
+                                <label>Couleur led</label>
+                                <select class="f-control f-dropdown" placeholder="selectionner un couleur led"
+                                    name="led">
+                                    <option value="jaune"
+                                        data-image="{{ asset('template-front/assets/imgs/produit/led1.webp') }}">couleur
+                                        led 1</option>
+                                    <option value="blanc"
+                                        data-image="{{ asset('template-front/assets/imgs/produit/led2.webp') }}">couleur
+                                        led 2</option>
+                                </select>
+                            </div>
+                            <div class="f-group col-md-6 mt-5">
+                                <label>Couleur mirroir</label>
+                                <select class="f-control f-dropdown" placeholder="selectionner un couleur mirroir"
+                                    name="mirroir">
+                                    <option value="jaune"
+                                        data-image="{{ asset('template-front/assets/imgs/produit/c1.webp') }}">rouge
+                                    </option>
+                                    <option value="blanc"
+                                        data-image="{{ asset('template-front/assets/imgs/produit/c2.webp') }}">vert
+                                        claire</option>
+                                </select>
+                            </div>
+                            <div class="f-group col-md-6 mt-5">
+                                <label>Couleur cadre</label>
+                                <select class="f-control f-dropdown" placeholder="selectionner un couleur cadre"
+                                    name="couleur-cadre">
+                                    <option value="vert claire aliminum"
+                                        data-image="{{ asset('template-front/assets/imgs/produit/c2.webp') }}">vert
+                                        claire</option>
+                                    <option value="rouge bois"
+                                        data-image="{{ asset('template-front/assets/imgs/produit/c1.webp') }}">rouge
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="f-group col-md-12 mt-5">
+                                <label>Interrupteur</label>
+
+                                <select id="custom-select" class="form-control custom-select2 interrepteur" name="interrepteur">
+                                    <option value="sans"
+                                        data-img-src="{{ asset('template-front/assets/imgs/produit/interrepteur1.jpg') }}"
+                                        data-description="aucune frais additionnel ">sans</option>
+                                    <option value="tactile"
+                                        data-img-src={{ asset('template-front/assets/imgs/produit/interrepteur2.webp') }}
+                                        data-description="+ 30 dt">tactile</option>
+            
                                 </select>
                             </div>
                             <!-- Select inputs end here -->
@@ -92,12 +148,12 @@
                         </div>
                         <div class="mt-40">
                             <ul class="rest">
-                          
+
                                 <li class="d-flex align-items-center mb-15">
                                     <strong>CATEGORY :</strong>
                                     <span class="ml-10"><a href="#0">{{ $product->category->name }}</a></span>
                                 </li>
-                      
+
                             </ul>
                         </div>
                     </div>
@@ -372,14 +428,91 @@
     <!-- ==================== End product ==================== -->
 </x-front-layout>
 <script src="assets/js/price-range.js"></script>
+
+<!-- custom inputs scripts -->
+<script src="{{ asset('template-front/assets/js/custom-inputs.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        // Calculate and update the product price
+        function updatePrice() {
+            var langeur = parseFloat($('#langeur').val());
+            var largeur = parseFloat($('#largeur').val());
+            var pricePerSquareMeter = parseFloat('{{ $product->prix_metre_carre }}');
+            var basePrice = langeur * largeur * pricePerSquareMeter;
+
+            // Check if "interrupteur tactile" is selected and add 30 to the price if it is
+            var isTactileSelected = $('.interrepteur').val() === 'tactile';
+            console.log( $('.interrepteur').val())
+            if (isTactileSelected) {
+                basePrice += 30;
+            }
+
+            $('#prix-produit').text(basePrice.toFixed(2));
+        }
+
+        // Bind keyup event to langeur and largeur inputs
+        $('#langeur, #largeur').on('keyup', function() {
+            updatePrice();
+        });
+        $('#custom-select').on('change', function() {
+            console.log("its changed")
+            updatePrice();
+        });
+
+
+        // Bind click event to the custom dropdown options
+        $('.selectDropdown a').on('click', function() {
+            clearTimeout(updateTimeout);
+            updateTimeout = setTimeout(function() {
+                console.log("interrepteur changed");
+                updatePrice();
+            }, 100); // Delay in milliseconds
+        });
+
+        // Initial price calculation
+        updatePrice();
+    });
+</script>
+
 <style>
-    .dark-select ,.dark-select:focus{
-        background-color: #333;
-        color: #fff;
-        border-color: #444;
+    .select2-result-option {
+        display: flex;
+        align-items: center;
     }
-    .dark-select option {
-        background-color: #333;
-        color: #fff;
+
+    .img-option {
+        margin-right: 10px;
     }
 </style>
+<script>
+    $(document).ready(function() {
+        function formatOption(option) {
+            if (!option.id) {
+                return option.text;
+            }
+            var imgSrc = $(option.element).data('img-src');
+            var description = $(option.element).data('description');
+            var $option = $(
+                '<div class="select2-result-option">' +
+                    '<img src="' + imgSrc +
+                    '" class="img-option" style="width: 50px; height: 50px; margin-right: 10px;"/>' +
+                    '<div class="select2-text-section">' +
+                        '<strong>' + option.text + '</strong><br/>' +
+                        '<small>' + description + '</small>' +
+                    '</div>'+
+                '</div>'
+            );
+            return $option;
+        }
+
+        $('#custom-select').select2({
+            templateResult: formatOption,
+            templateSelection: formatOption,       
+            minimumResultsForSearch: -1 // Disable search
+
+        });
+    });
+</script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>

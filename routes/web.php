@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomePageContentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SingleProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,9 +22,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomePageContentController::class, 'index'])->name('home.index');
+Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/product/{id}', [SingleProductController::class, 'index'])->name('singleproduct.index');
 Route::get('/test', function () {
-    return view('test');
+    return view('shop.shop-list');
 });
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 

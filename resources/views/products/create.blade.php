@@ -15,22 +15,25 @@
                     <label for="name" class="form-label">Product Name</label>
                     <input type="text" class="form-control" id="name" name="name" required>
                 </div>
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
-                </div>
+
                 <div class="mb-3">
                     <label for="prix_metre_carre" class="form-label">Price per Square Meter</label>
-                    <input type="number" step="0.01" class="form-control" id="prix_metre_carre" name="prix_metre_carre" required>
+                    <input type="number" step="0.01" class="form-control" id="prix_metre_carre"
+                        name="prix_metre_carre" required>
                 </div>
-                <div class="mb-3">
-                    <label for="longeur" class="form-label">Length</label>
-                    <input type="number" step="0.01" class="form-control" id="longeur" name="longeur" required>
+                <div class="mb-3 d-flex ">
+                    <label class="custom-control custom-checkbox-md me-5">
+                        <input type="checkbox" class="custom-control-input" name="interrepteur" value="interrepteur"
+                            checked="">
+                        <span class="custom-control-label">Interrepteur</span>
+                    </label>
+                    <label class="custom-control custom-checkbox-md">
+                        <input type="checkbox" class="custom-control-input" name="led" value="led"
+                            checked="">
+                        <span class="custom-control-label">Led</span>
+                    </label>
                 </div>
-                <div class="mb-3">
-                    <label for="hauteur" class="form-label">Height</label>
-                    <input type="number" step="0.01" class="form-control" id="hauteur" name="hauteur" required>
-                </div>
+
                 <div class="mb-3">
                     <label for="category_id" class="form-label">Category</label>
                     <select class="form-select" id="category_id" name="category_id" required>
@@ -38,6 +41,10 @@
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="image_avant" class="form-label">ProductcFeatured Image</label>
@@ -74,12 +81,13 @@
                 processData: false,
                 dataType: 'json',
                 beforeSend: function() {
-                    $('#save-product').prop('disabled', true).html('<i class="fa fa-spinner fa-spin"></i> Saving...');
+                    $('#save-product').prop('disabled', true).html(
+                        '<i class="fa fa-spinner fa-spin"></i> Saving...');
                 },
                 success: function(response) {
                     if (response.status == 'success') {
                         $('#myModalXl').modal('hide');
-                        // window.location.reload();
+                        window.location.reload();
                     }
                 },
                 error: function(xhr) {
