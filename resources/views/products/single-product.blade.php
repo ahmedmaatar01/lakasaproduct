@@ -58,12 +58,12 @@
 
                             <div class="f-group col-md-12 mt-5">
                                 <label>Cadre</label>
-                                <select class="f-control f-dropdown" placeholder="selectionner un cadre" name="cadre">
+                                <select class="form-control select2" placeholder="selectionner un cadre" name="cadre">
                                     <option value="discret"
-                                        data-image="{{ asset('template-front/assets/imgs/produit/cadre1.webp') }}">cadre
+                                    data-img-src="{{ asset('template-front/assets/imgs/produit/cadre1.webp') }}">cadre
                                         discret</option>
                                     <option value="apparent"
-                                        data-image="{{ asset('template-front/assets/imgs/produit/cadre2.webp') }}">cadre
+                                    data-img-src="{{ asset('template-front/assets/imgs/produit/cadre2.webp') }}">cadre
                                         apparent</option>
                                 </select>
                             </div>
@@ -81,51 +81,55 @@
                             </div>
                             <div class="f-group col-md-12 mt-5">
                                 <label>Couleur led</label>
-                                <select class="f-control f-dropdown" placeholder="selectionner un couleur led"
+                                <select class="form-control select2" placeholder="selectionner un couleur led"
                                     name="led">
                                     <option value="jaune"
-                                        data-image="{{ asset('template-front/assets/imgs/produit/led1.webp') }}">couleur
+                                    data-img-src="{{ asset('template-front/assets/imgs/produit/led1.webp') }}">couleur
                                         led 1</option>
                                     <option value="blanc"
-                                        data-image="{{ asset('template-front/assets/imgs/produit/led2.webp') }}">couleur
+                                    data-img-src="{{ asset('template-front/assets/imgs/produit/led2.webp') }}">couleur
                                         led 2</option>
                                 </select>
                             </div>
                             <div class="f-group col-md-6 mt-5">
                                 <label>Couleur mirroir</label>
-                                <select class="f-control f-dropdown" placeholder="selectionner un couleur mirroir"
+                                <select class="form-control select2" placeholder="selectionner un couleur mirroir"
                                     name="mirroir">
                                     <option value="jaune"
-                                        data-image="{{ asset('template-front/assets/imgs/produit/c1.webp') }}">rouge
+                                    data-img-src="{{ asset('template-front/assets/imgs/produit/c1.webp') }}">rouge
                                     </option>
                                     <option value="blanc"
-                                        data-image="{{ asset('template-front/assets/imgs/produit/c2.webp') }}">vert
+                                    data-img-src="{{ asset('template-front/assets/imgs/produit/c2.webp') }}">vert
                                         claire</option>
                                 </select>
                             </div>
                             <div class="f-group col-md-6 mt-5">
                                 <label>Couleur cadre</label>
-                                <select class="f-control f-dropdown" placeholder="selectionner un couleur cadre"
+                                <select class="form-control select2" placeholder="selectionner un couleur cadre"
                                     name="couleur-cadre">
+
                                     <option value="vert claire aliminum"
-                                        data-image="{{ asset('template-front/assets/imgs/produit/c2.webp') }}">vert
+                                        data-img-src="{{ asset('template-front/assets/imgs/produit/c2.webp') }}"
+                                        data-description="aucune frais additionnel ">vert
                                         claire</option>
                                     <option value="rouge bois"
-                                        data-image="{{ asset('template-front/assets/imgs/produit/c1.webp') }}">rouge
+                                        data-img-src="{{ asset('template-front/assets/imgs/produit/c1.webp') }}"
+                                        data-description="aucune frais additionnel ">rouge
                                     </option>
                                 </select>
                             </div>
                             <div class="f-group col-md-12 mt-5">
                                 <label>Interrupteur</label>
 
-                                <select id="custom-select" class="form-control custom-select2 interrepteur" name="interrepteur">
+                                <select id="custom-select" class="form-control custom-select2 interrepteur"
+                                    name="interrepteur">
                                     <option value="sans"
                                         data-img-src="{{ asset('template-front/assets/imgs/produit/interrepteur1.jpg') }}"
                                         data-description="aucune frais additionnel ">sans</option>
                                     <option value="tactile"
                                         data-img-src={{ asset('template-front/assets/imgs/produit/interrepteur2.webp') }}
                                         data-description="+ 30 dt">tactile</option>
-            
+
                                 </select>
                             </div>
                             <!-- Select inputs end here -->
@@ -140,9 +144,11 @@
                                     </div>
                                 </div>
                                 <div class="ml-auto">
-                                    <a href="#0" class="butn butn-md butn-bord">
+                              
+                                    <a href="" class="butn butn-md butn-bord add-to-cart" data-product-id="{{ $product->id }}">
                                         <span class="text-u fz-13">Add To Cart</span>
                                     </a>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -442,7 +448,7 @@
 
             // Check if "interrupteur tactile" is selected and add 30 to the price if it is
             var isTactileSelected = $('.interrepteur').val() === 'tactile';
-            console.log( $('.interrepteur').val())
+            console.log($('.interrepteur').val())
             if (isTactileSelected) {
                 basePrice += 30;
             }
@@ -471,16 +477,63 @@
 
         // Initial price calculation
         updatePrice();
+     // Handle Add to Cart click
+     $('.add-to-cart').on('click', function(e) {
+            e.preventDefault();
+            
+            var productId = $(this).data('product-id');
+            var langeur = $('#langeur').val();
+            var largeur = $('#largeur').val();
+            var cadre = $('select[name="cadre"]').val();
+            var led = $('select[name="led"]').val();
+            var mirroir = $('select[name="mirroir"]').val();
+            var couleurCadre = $('select[name="couleur-cadre"]').val();
+            var interrepteur = $('select[name="interrepteur"]').val();
+            var quantity = $('.counter input').val();
+            var price = $('#prix-produit').text();
+
+            var data = {
+                product_id: productId,
+                langeur: langeur,
+                largeur: largeur,
+                cadre: cadre,
+                led: led,
+                mirroir: mirroir,
+                couleur_cadre: couleurCadre,
+                interrepteur: interrepteur,
+                quantity: quantity,
+                price: price,
+                _token: '{{ csrf_token() }}'
+            };
+
+            $.ajax({
+                url: '{{ route("cart.add") }}',
+                method: 'POST',
+                data: data,
+                success: function(response) {
+                    alert('Product added to cart successfully!');
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    alert('There was an error adding the product to the cart.');
+                }
+            });
+        });
     });
 </script>
 
 <script>
     $(document).ready(function() {
 
+        $('.select2').select2({
+            templateResult: formatOption,
+            templateSelection: formatOption,
+            minimumResultsForSearch: -1 // Disable search
 
+        });
         $('#custom-select').select2({
             templateResult: formatOption,
-            templateSelection: formatOption,       
+            templateSelection: formatOption,
             minimumResultsForSearch: -1 // Disable search
 
         });

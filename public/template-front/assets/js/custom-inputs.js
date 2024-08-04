@@ -266,13 +266,13 @@ function formatOption(option) {
     }
     var imgSrc = $(option.element).data('img-src');
     var description = $(option.element).data('description');
+    var descriptionHtml = description ? '<small>' + description + '</small>' : '';
     var $option = $(
         '<div class="select2-result-option">' +
-            '<img src="' + imgSrc +
-            '" class="img-option" style="width: 50px; height: 50px; margin-right: 10px;"/>' +
+            '<img src="' + imgSrc + '" class="img-option" style="width: 50px; height: 50px; margin-right: 10px;"/>' +
             '<div class="select2-text-section">' +
                 '<strong>' + option.text + '</strong><br/>' +
-                '<small>' + description + '</small>' +
+                descriptionHtml +
             '</div>'+
         '</div>'
     );

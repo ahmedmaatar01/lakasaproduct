@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomePageContentController;
@@ -27,6 +28,10 @@ Route::get('/product/{id}', [SingleProductController::class, 'index'])->name('si
 Route::get('/test', function () {
     return view('shop.shop-list');
 });
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
