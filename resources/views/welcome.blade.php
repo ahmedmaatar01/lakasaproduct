@@ -21,6 +21,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Epilogue:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
         rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
     <!-- Plugins -->
     <link rel="stylesheet" href="{{ asset('template-front/assets/css/plugins.css') }}">
@@ -56,7 +57,7 @@
         @endif
 
         <div class="max-w-7xl mx-auto p-6 lg:p-8">
-            <h1>content here</h1>
+
         </div>
 
     </div>
@@ -73,12 +74,20 @@
         <div class="loader-wrap-heading">
             <div class="load-text">
                 <span>L</span>
-                <span>o</span>
                 <span>a</span>
+                <span> </span>
+                <span>k</span>
+                <span>a</span>
+                <span>s</span>
+                <span>a</span>
+                <span> </span>
+                <span>p</span>
+                <span>r</span>
+                <span>o</span>
                 <span>d</span>
-                <span>i</span>
-                <span>n</span>
-                <span>g</span>
+                <span>u</span>
+                <span>c</span>
+                <span>t</span>
             </div>
         </div>
     </div>
@@ -109,7 +118,7 @@
             <div class="container">
 
                 <!-- Logo -->
-                <a class="logo icon-img-100" href="#">
+                <a class="logo icon-img-100" href="{{ route('home.index') }}">
                     <img src="{{ asset('template-front/assets/imgs/logo-dark.png') }}" alt="logo">
                 </a>
 
@@ -124,199 +133,126 @@
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                aria-haspopup="true" aria-expanded="false"><span class="rolling-text">Home</span></a>
+                                aria-haspopup="true" aria-expanded="false"><span class="rolling-text">Miroir</span></a>
                             <div class="dropdown-menu mega-menu">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="clumn">
                                                 <div class="title">
-                                                    <h6 class="sub-title ls1">Home Dark</h6>
+                                                    <h6 class="sub-title ls1">Formes</h6>
                                                 </div>
                                                 <div class="links">
-                                                    <a class="dropdown-item"
-                                                        href="https://uithemez.com/i/geekfolio/dark/home-main.html">Main
-                                                        Home</a>
-                                                    <a class="dropdown-item"
-                                                        href="https://uithemez.com/i/geekfolio/dark/home-corporate.html">Corporate
-                                                        Business</a>
-                                                    <a class="dropdown-item"
-                                                        href="https://uithemez.com/i/geekfolio/dark/home-onepage.html">Home
-                                                        One page</a>
-                                                    <a class="dropdown-item"
-                                                        href="https://uithemez.com/i/geekfolio/dark/home-digital-agency.html">Digital
-                                                        Agency</a>
-                                                    <a class="dropdown-item"
-                                                        href="https://uithemez.com/i/geekfolio/dark/home-freelancer.html">Freelancer</a>
-                                                    <a class="dropdown-item"
-                                                        href="https://uithemez.com/i/geekfolio/dark/home-marketing-agency.html">Marketing
-                                                        Agency</a>
-                                                    <a class="dropdown-item"
-                                                        href="https://uithemez.com/i/geekfolio/dark/home-creative-agency.html">Creative
-                                                        Agency</a>
-                                                    <a class="dropdown-item"
-                                                        href="https://uithemez.com/i/geekfolio/dark/home-startup.html">Startup
-                                                        Bussines</a>
-                                                    <a class="dropdown-item"
-                                                        href="https://uithemez.com/i/geekfolio/dark/home-architecture.html">Architecture</a>
+                                                    <a class="dropdown-item item-change-image-header"
+                                                        href="{{ route('shop.index', ['forme' => 'rectangulaire', 'mirroir' => 'simple']) }}">Rectangulaire</a>
+                                                    <a class="dropdown-item item-change-image-header"
+                                                        href="{{ route('shop.index', ['forme' => 'rond', 'mirroir' => 'simple']) }}">Rond</a>
+                                                    <a class="dropdown-item item-change-image-header"
+                                                        href="{{ route('shop.index', ['forme' => 'semi ovale', 'mirroir' => 'simple']) }}">Semi Ovale</a>
+                                                    <a class="dropdown-item item-change-image-header"
+                                                        href="{{ route('shop.index', ['forme' => 'abstraite', 'mirroir' => 'simple']) }}">Abstraite</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="clumn">
                                                 <div class="title">
-                                                    <h6 class="sub-title ls1">Home Light</h6>
+                                                    <h6 class="sub-title ls1">Styles</h6>
                                                 </div>
                                                 <div class="links">
-                                                    <a class="dropdown-item" href="home-main.html">Main Home</a>
-                                                    <a class="dropdown-item" href="home-corporate.html">Corporate
-                                                        Business</a>
-                                                    <a class="dropdown-item" href="home-onepage.html">Home One
-                                                        page</a>
-                                                    <a class="dropdown-item" href="home-digital-agency.html">Digital
-                                                        Agency</a>
-                                                    <a class="dropdown-item"
-                                                        href="home-freelancer.html">Freelancer</a>
-                                                    <a class="dropdown-item"
-                                                        href="home-marketing-agency.html">Marketing
-                                                        Agency</a>
-                                                    <a class="dropdown-item" href="home-creative-agency.html">Creative
-                                                        Agency</a>
-                                                    <a class="dropdown-item" href="home-startup.html">Startup
-                                                        Bussines</a>
-                                                    <a class="dropdown-item"
-                                                        href="home-architecture.html">Architecture</a>
+
+                                                        <a class="dropdown-item item-change-image-header"
+                                                        href="{{ route('shop.index') }}">Miroir Encadré</a>
+                                                    <a class="dropdown-item item-change-image-header"
+                                                        href="{{ route('shop.index') }}">Miroir Basique</a>
+
+
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="clumn">
-                                                <div class="title">
-                                                    <h6 class="sub-title ls1">Showcases</h6>
-                                                </div>
-                                                <div class="links">
-                                                    <a class="dropdown-item"
-                                                        href="https://uithemez.com/i/geekfolio/dark/showcase-parallax-slider.html">Parallax
-                                                        Slider</a>
-                                                    <a class="dropdown-item"
-                                                        href="https://uithemez.com/i/geekfolio/dark/showcase-frame-slider.html">Frame
-                                                        Slider</a>
-                                                    <a class="dropdown-item"
-                                                        href="https://uithemez.com/i/geekfolio/dark/showcase-circle-slider.html">Circle
-                                                        Slider</a>
-                                                    <a class="dropdown-item"
-                                                        href="https://uithemez.com/i/geekfolio/dark/showcase-carousel.html">Showcase
-                                                        Carousel</a>
-                                                    <a class="dropdown-item"
-                                                        href="https://uithemez.com/i/geekfolio/dark/showcase-interactive-center-horizontal.html">Interactive
-                                                        Links1</a>
-                                                    <a class="dropdown-item"
-                                                        href="https://uithemez.com/i/geekfolio/dark/showcase-interactive-center.html">Interactive
-                                                        Links2</a>
-                                                    <a class="dropdown-item"
-                                                        href="https://uithemez.com/i/geekfolio/dark/showcase-parallax.html">Vertical
-                                                        Parallax</a>
+                                                <div class="image">
+                                                    <img src="http://127.0.0.1:8000/storage/section_images/1l6Cqiv41vwb8kEVqBW3KJfcKEqaEwWWEOqOK3KR.gif"
+                                                        alt="image du categorie">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
-                                            <div class="clumn">
-                                                <div class="title">
-                                                    <h6 class="sub-title ls1">Showcases Light</h6>
-                                                </div>
-                                                <div class="links">
-                                                    <a class="dropdown-item"
-                                                        href="showcase-parallax-slider.html">Parallax
-                                                        Slider</a>
-                                                    <a class="dropdown-item" href="showcase-carousel.html">Showcase
-                                                        Carousel</a>
-                                                    <a class="dropdown-item"
-                                                        href="showcase-interactive-center-horizontal.html">Interactive
-                                                        Links1</a>
-                                                    <a class="dropdown-item"
-                                                        href="showcase-interactive-center.html">Interactive Links2</a>
-                                                    <a class="dropdown-item" href="showcase-parallax.html">Vertical
-                                                        Parallax</a>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                aria-haspopup="true" aria-expanded="false"><span
-                                    class="rolling-text">Pages</span></a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="page-about.html">About</a>
-                                <a class="dropdown-item" href="page-services.html">Services</a>
-                                <a class="dropdown-item" href="page-team.html">Our Team</a>
-                                <a class="dropdown-item" href="page-contact.html">Contact Us</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                aria-haspopup="true" aria-expanded="false"><span
-                                    class="rolling-text">Portfolio</span></a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-item">
-                                    <a href="#0">Classic Grid <i class="fas fa-angle-right icon-arrow"></i></a>
-                                    <ul class="dropdown-side">
-                                        <li><a class="dropdown-item" href="portfolio-grid-2.html">Grid 2 Columns</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="portfolio-grid-3.html">Grid 3 Columns</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="portfolio-grid-4.html">Grid 4 Columns</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown-item">
-                                    <a href="#0">Masonry <i class="fas fa-angle-right icon-arrow"></i></a>
-                                    <ul class="dropdown-side">
-                                        <li><a class="dropdown-item" href="portfolio-masonry-2.html">Masonry 2
-                                                Columns</a></li>
-                                        <li><a class="dropdown-item" href="portfolio-masonry-3.html">Masonry 3
-                                                Columns</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="portfolio-masonry-4.html">Masonry 4
-                                                Columns</a></li>
-                                    </ul>
-                                </li>
-                                <li><a class="dropdown-item" href="portfolio-metro.html">Portfolio Metro</a></li>
-                                <li><a class="dropdown-item" href="portfolio-modern.html">Modern Grid</a></li>
-                                <li><a class="dropdown-item" href="project-details1.html">Project Details 1</a></li>
-                                <li><a class="dropdown-item" href="project-details2.html">Project Details 2</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                aria-haspopup="true" aria-expanded="false"><span
-                                    class="rolling-text">Blogs</span></a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="blog-classic.html">Blog Standerd</a>
-                                <a class="dropdown-item" href="blog-list.html">Blog List</a>
-                                <a class="dropdown-item" href="blog-half-img.html">Image Out Frame</a>
-                                <a class="dropdown-item" href="blog-details.html">Blog Details</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                aria-haspopup="true" aria-expanded="false"><span class="rolling-text">Shop</span></a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="shop-list.html">Shop List</a>
-                                <a class="dropdown-item" href="shop-product.html">Single Product</a>
-                                <a class="dropdown-item" href="shop-cart.html">Cart</a>
-                                <a class="dropdown-item" href="shop-checkout.html">Checkout</a>
+                                aria-haspopup="true" aria-expanded="false"><span class="rolling-text">Mirroir
+                                    Led</span></a>
+                            <div class="dropdown-menu mega-menu">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="clumn">
+                                                <div class="title">
+                                                    <h6 class="sub-title ls1">Formes</h6>
+                                                </div>
+                                                <div class="links">
+                                                    <a class="dropdown-item item-change-image-header"
+                                                        href="{{ route('shop.index', ['forme' => 'rectangulaire', 'mirroir' => 'led']) }}">Rectangulaire</a>
+                                                    <a class="dropdown-item item-change-image-header"
+                                                        href="{{ route('shop.index', ['forme' => 'rond', 'mirroir' => 'led']) }}">Rond</a>
+                                                    <a class="dropdown-item item-change-image-header"
+                                                        href="{{ route('shop.index', ['forme' => 'semi ovale', 'mirroir' => 'led']) }}">Semi Ovale</a>
+                                                    <a class="dropdown-item item-change-image-header"
+                                                        href="{{ route('shop.index', ['forme' => 'abstraite', 'mirroir' => 'led']) }}">Abstraite</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="clumn">
+                                                <div class="title">
+                                                    <h6 class="sub-title ls1">Styles</h6>
+                                                </div>
+                                                <div class="links">
+                                                    <a class="dropdown-item item-change-image-header"
+                                                    href="{{ route('shop.index', ['style_lumiere' => 'combiner', 'mirroir' => 'led']) }}">Lumière Combinée</a>
+                                                <a class="dropdown-item item-change-image-header"
+                                                    href="{{ route('shop.index', ['style_lumiere' => 'brillant', 'mirroir' => 'led']) }}">Lumière Brillante</a>
+                                                <a class="dropdown-item item-change-image-header"
+                                                    href="{{ route('shop.index', ['style_lumiere' => 'retro', 'mirroir' => 'led']) }}">Lumière Rétro</a>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="clumn">
+                                                <div class="image">
+                                                    <img src="http://127.0.0.1:8000/storage/section_images/1l6Cqiv41vwb8kEVqBW3KJfcKEqaEwWWEOqOK3KR.gif"
+                                                        alt="image du categorie">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="page-contact.html"><span
+                            <a class="nav-link" href="#"><span class="rolling-text">Salon de
+                                    coiffure</span></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('contact.index') }}"><span
                                     class="rolling-text">Contact</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('b2b.index') }}"><span
+                                    class="rolling-text">b2b</span></a>
                         </li>
                     </ul>
                 </div>
-                @if (Route::has('login'))
+                {{-- @if (Route::has('login'))
                     <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                         @auth
                             <a href="{{ url('/dashboard') }}"
@@ -332,8 +268,34 @@
                             @endif
                         @endauth
                     </div>
-                @endif
-                <div class="search-form">
+                @endif --}}
+
+                <!-- Profile Dropdown -->
+                <div class="dropdown">
+                    <a class=" dropdown-toggle pe-2" href="#" id="profileDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-circle" style="font-size: 24px; color:#fff;"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                        @auth
+                            <a class="dropdown-item" href="{{ url('/dashboard') }}">Dashboard</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log
+                                out</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                style="display: none;">
+                                @csrf
+                            </form>
+                        @else
+                            <a class="dropdown-item" href="{{ route('login') }}">Log in</a>
+                            @if (Route::has('register'))
+                                <a class="dropdown-item" href="{{ route('register') }}">Register</a>
+                            @endif
+                        @endauth
+                    </div>
+                </div>
+
+                {{-- <div class="search-form">
                     <div class="form-group">
                         <input type="text" name="search" placeholder="Search">
                         <button><span class="pe-7s-search"></span></button>
@@ -343,6 +305,12 @@
                         <span class="pe-7s-search open-search"></span>
                         <span class="pe-7s-close close-search"></span>
                     </div>
+                </div> --}}
+                <div class="cart-icon">
+                    <a href="{{ route('cart.index') }}">
+                        <i class="fa-solid fa-cart-shopping"
+                            style="position: relative;padding: 25px 30px;cursor: pointer;border-left: 1px solid #ffffff4f;border-right: 1px solid #ffffff4f;"></i>
+                    </a>
                 </div>
             </div>
         </nav>
@@ -353,7 +321,7 @@
 
             <main class="main-bg">
                 {{ $slot }}
-               
+
 
             </main>
 

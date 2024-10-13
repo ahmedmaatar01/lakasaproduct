@@ -10771,5 +10771,9 @@ header.in-box {
     margin: auto;
   }
 }
+.icon-white {
+  filter: invert(1);
+}
+
 
 /* ====================== [ End Responsive ] ====================== */

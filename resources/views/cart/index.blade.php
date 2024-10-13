@@ -35,10 +35,8 @@
                                             <h5 class="main-color4 fz-18">{{ number_format($item['price'], 2) }} Dt</h5>
                                         </td>
                                         <td data-column="Quantity">
-                                            <div class="counter">
-                                                <span class="down" onClick='decreaseCount(event, this)'>-</span>
-                                                <input type="text" value="{{ $item['quantity'] }}">
-                                                <span class="up" onClick='increaseCount(event, this)'>+</span>
+                                            <div class="fw-3 ps-1">
+                                                {{ $item['quantity'] }}
                                             </div>
                                         </td>
                                         <td data-column="Subtotal">
@@ -46,9 +44,8 @@
                                                 {{ number_format($item['price'] * $item['quantity'], 2) }} Dt</h5>
                                         </td>
                                         <td class="remove">
-                                            <a href="javascript:;" class="remove-item">
-                                                <span class="pe-7s-close" id="remove-item"
-                                                    data-item-id="{{ $item['product_id'] }}">
+                                            <a href="javascript:;" class="remove-item" data-item-id="{{ $item['product_id'] }}">
+                                                <span class="pe-7s-close" id="remove-item">
                                                 </span>
                                             </a>
                                         </td>
@@ -92,7 +89,7 @@
                                         </h6>
                                     </li>
                                 </ul>
-                                <a href="shop-checkout.html" class="butn butn-md butn-bg main-colorbg4 mt-30">
+                                <a href="{{ route('checkout.index') }}" class="butn butn-md butn-bg main-colorbg4 mt-30">
                                     <span class="text-u fz-13 fw-600">Proceed to checkout</span>
                                 </a>
                             </div>
@@ -107,46 +104,46 @@
 </x-front-layout>
 <script src="assets/js/price-range.js"></script>
 <script>
-    $('.remove-item').click(function() {
-        var id = $(this).data('item-id');
-        console.log(id)
-        var url = "{{ route('cart.remove', ':id') }}".replace(':id', id);
+    $(document).ready(function() {
+        $('.remove-item').click(function() {
+            var id = $(this).data('item-id');
+            var url = "{{ route('cart.remove') }}";
 
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: url,
-                    type: 'DELETE',
-                    data: {
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        if (response.status === 'success') {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            product_id: id
+                        },
+                        success: function(response) {
                             Swal.fire(
                                 'Deleted!',
                                 'Your product has been deleted.',
                                 'success'
                             );
                             window.location.reload();
+                        },
+                        error: function(xhr) {
+                            Swal.fire(
+                                'Error!',
+                                'There was an error deleting the product.',
+                                'error'
+                            );
                         }
-                    },
-                    error: function(xhr) {
-                        Swal.fire(
-                            'Error!',
-                            'There was an error deleting the product.',
-                            'error'
-                        );
-                    }
-                });
-            }
+                    });
+                }
+            });
         });
     });
 </script>

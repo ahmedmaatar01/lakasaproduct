@@ -43,6 +43,17 @@
                             class="side-menu__icon fa fa-user-circle"></i><span
                             class="side-menu__label">Products</span></a>
                 </li>
+                <li class="slide">
+                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="{{route('product-details.index') }}"><i
+                            class="side-menu__icon fa fa-user-circle"></i><span
+                            class="side-menu__label">Product details</span></a>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="{{route('commandes.index') }}"><i
+                            class="side-menu__icon fa fa-user-circle"></i><span
+                            class="side-menu__label">Commandes</span></a>
+                </li>
+                
                 <li class="sub-category">
                     <h3>Modifier les pages</h3>
                 </li>

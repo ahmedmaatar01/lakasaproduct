@@ -27,4 +27,12 @@ class Product extends Model
     {
         return $this->hasOne(ProductImage::class)->where('featured', true);
     }
+    public function orders()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+    public function productDetail()
+    {
+        return $this->belongsTo(ProductDetail::class, 'product_details_id');
+    }
 }

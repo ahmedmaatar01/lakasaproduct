@@ -12,7 +12,7 @@ class SingleProductController extends Controller
     public function index(string $id)
     {
         $product_imgs= ProductImage::where("product_id",$id)->get();
-        $product = Product::with('featuredImage', 'category')->findOrFail($id);
+        $product = Product::with('featuredImage', 'category','productDetail')->findOrFail($id);
         return view('products.single-product', compact('product','product_imgs'));
     }
 

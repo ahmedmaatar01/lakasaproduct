@@ -1,18 +1,25 @@
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+    <span class="next" onclick="changeSlide(1)">&#10095;</span>
+    <img id="modalImage" src="" alt="Full View">
+</div>
 <x-front-layout>
     <!-- ==================== Start product ==================== -->
 
-    <section class="product-details section-padding">
+    <section class="product-details section-padding serv-box">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-4">
                     <div class="img-preview">
                         <div class="gallery-top">
-                            <div class="swiper-container">
+                            <div class="swiper-container" style="height: fit-content;">
                                 <div class="swiper-wrapper">
                                     @foreach ($product_imgs as $image)
                                         <div class="swiper-slide">
                                             <div class="img">
-                                                <img src="{{ asset('storage/' . $image->image_path) }}" alt="">
+                                                <img src="{{ asset('storage/' . $image->image_path) }}" alt=""
+                                                    onclick="openModal()" id="mainImage">
                                             </div>
                                         </div>
                                     @endforeach
@@ -35,6 +42,8 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Modal for Fullscreen Image -->
+
                 </div>
                 <div class="col-lg-6 offset-lg-1">
                     <div class="product-info">
@@ -60,10 +69,12 @@
                                 <label>Cadre</label>
                                 <select class="form-control select2" placeholder="selectionner un cadre" name="cadre">
                                     <option value="discret"
-                                    data-img-src="{{ asset('template-front/assets/imgs/produit/cadre1.webp') }}">cadre
+                                        data-img-src="{{ asset('template-front/assets/imgs/produit/cadre1.webp') }}">
+                                        cadre
                                         discret</option>
                                     <option value="apparent"
-                                    data-img-src="{{ asset('template-front/assets/imgs/produit/cadre2.webp') }}">cadre
+                                        data-img-src="{{ asset('template-front/assets/imgs/produit/cadre2.webp') }}">
+                                        cadre
                                         apparent</option>
                                 </select>
                             </div>
@@ -84,10 +95,12 @@
                                 <select class="form-control select2" placeholder="selectionner un couleur led"
                                     name="led">
                                     <option value="jaune"
-                                    data-img-src="{{ asset('template-front/assets/imgs/produit/led1.webp') }}">couleur
+                                        data-img-src="{{ asset('template-front/assets/imgs/produit/led1.webp') }}">
+                                        couleur
                                         led 1</option>
                                     <option value="blanc"
-                                    data-img-src="{{ asset('template-front/assets/imgs/produit/led2.webp') }}">couleur
+                                        data-img-src="{{ asset('template-front/assets/imgs/produit/led2.webp') }}">
+                                        couleur
                                         led 2</option>
                                 </select>
                             </div>
@@ -96,10 +109,10 @@
                                 <select class="form-control select2" placeholder="selectionner un couleur mirroir"
                                     name="mirroir">
                                     <option value="jaune"
-                                    data-img-src="{{ asset('template-front/assets/imgs/produit/c1.webp') }}">rouge
+                                        data-img-src="{{ asset('template-front/assets/imgs/produit/c1.webp') }}">rouge
                                     </option>
                                     <option value="blanc"
-                                    data-img-src="{{ asset('template-front/assets/imgs/produit/c2.webp') }}">vert
+                                        data-img-src="{{ asset('template-front/assets/imgs/produit/c2.webp') }}">vert
                                         claire</option>
                                 </select>
                             </div>
@@ -144,11 +157,12 @@
                                     </div>
                                 </div>
                                 <div class="ml-auto">
-                              
-                                    <a href="" class="butn butn-md butn-bord add-to-cart" data-product-id="{{ $product->id }}">
+
+                                    <a href="" class="butn butn-md butn-bord add-to-cart"
+                                        data-product-id="{{ $product->id }}">
                                         <span class="text-u fz-13">Add To Cart</span>
                                     </a>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -163,6 +177,55 @@
                             </ul>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="cartes-produit">
+                <div class="row">
+                    <div class="col-lg-3 mb-15">
+                        <div class="serv-item md-mb50 radius-10"
+                            style="display: flex;flex-direction: column;align-items: center;padding: 30px 20px;">
+                            <div class="icon-img-50 mb-10">
+                                <img src="{{ asset('images/water.svg') }}" class="icon-white" alt="">
+                            </div>
+                            <h6 class="mb-30 pb-30 bord-thin-bottom">Etanchité </h6>
+                            <p class="text-center">Elles dépendent du nombre de miroirs commandés et de la durée de la
+                                coopération.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 mb-15">
+                        <div class="serv-item md-mb50 radius-10"
+                            style="display: flex;flex-direction: column;align-items: center;padding: 30px 20px;">
+                            <div class="icon-img-50 mb-10">
+                                <img src="{{ asset('images/led.svg') }}" class="icon-white" alt="">
+                            </div>
+                            <h6 class="mb-30 pb-30 bord-thin-bottom">Qualité de led </h6>
+                            <p class="text-center">Elles dépendent du nombre de miroirs commandés et de la durée de la
+                                coopération.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 mb-15">
+                        <div class="serv-item radius-10"
+                            style="display: flex;flex-direction: column;align-items: center;padding: 30px 20px;">
+                            <div class="icon-img-50 mb-10">
+                                <img src="{{ asset('images/fix.svg') }}" class="icon-white" alt="">
+                            </div>
+                            <h6 class="mb-30 pb-30 bord-thin-bottom">Systeme de fixation </h6>
+                            <p class="text-center">Elles dépendent du nombre de miroirs commandés et de la durée de la
+                                coopération.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 mb-15">
+                        <div class="serv-item radius-10"
+                            style="display: flex;flex-direction: column;align-items: center;padding: 30px 20px;">
+                            <div class="icon-img-50 mb-10">
+                                <img src="{{ asset('images/mirror.svg') }}" class="icon-white" alt="">
+                            </div>
+                            <h6 class="mb-30 pb-30 bord-thin-bottom">Qualité de mirroir</h6>
+                            <p class="text-center">Elles dépendent du nombre de miroirs commandés et de la durée de la
+                                coopération.</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="row justify-content-center mt-100">
@@ -183,17 +246,171 @@
                             <div class="tab-content current" id="tabs-1">
                                 <div class="item">
                                     <div class="text">
-                                        <p class="mb-15">Percentage off promotions, discounts, or sale
-                                            markdowns are most customarily based on our own opinion of the
-                                            value of this product, which is not intended to reflect a former
-                                            price at which this product has sold in the recent past.</p>
-                                        <p>Class aptent taciti sociosqu ad litora torquent per conubia
-                                            nostra, per inceptos himenaeos. Nam eget neque eu ipsum laoreet
-                                            molestie nec vel nulla. Aenean iaculis, neque ultricies
-                                            efficitur ultricies, risus sapien dapibus ante, ac venenatis
-                                            nisi est nec sem. Vestibulum blandit tincidunt felis a cursus.
-                                            Donec eu tortor vitae metus scelerisque sollicitudin ut congue
-                                            est.</p>
+                                        <h3>{{ $product->productDetail->title_1 }}</h3>
+                                        <p class="mb-15 mt-25" style="font-size: 1rem;">
+                                            {{ $product->productDetail->description_1 }}
+                                        </p>
+                                    </div>
+                                    <div class="row">
+                                        @if (
+                                            $product->productDetail->section_title_1 &&
+                                                $product->productDetail->section_paragraph_1 &&
+                                                $product->productDetail->section_image_1)
+                                            <div class="col-lg-6 d-flex align-items-center px-5 mt-60">
+                                                <div class="text mb-40">
+                                                    <h3>{{ $product->productDetail->section_title_1 }}</h3>
+                                                    <p class="mb-15 mt-25" style="font-size: 0.8rem;">
+                                                        {{ $product->productDetail->section_paragraph_1 }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 d-flex align-items-center ">
+                                                <img src="{{ asset('storage/' . $product->productDetail->section_image_1) }}"
+                                                    alt="image mirroir">
+                                            </div>
+                                        @endif
+                                        @if (
+                                            $product->productDetail->section_title_2 &&
+                                                $product->productDetail->section_paragraph_2 &&
+                                                $product->productDetail->section_image_2)
+                                            <div class="col-lg-6 d-flex align-items-center mt-60">
+                                                <img src="{{ asset('storage/' . $product->productDetail->section_image_2) }}"
+                                                    alt="image mirroir">
+                                            </div>
+                                            <div class="col-lg-6 d-flex align-items-center px-5">
+                                                <div class="text">
+                                                    <h3>{{ $product->productDetail->section_title_2 }}</h3>
+                                                    <p class="mb-15 mt-25" style="font-size: 1rem;">
+                                                        {{ $product->productDetail->section_paragraph_2 }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if (
+                                            $product->productDetail->section_title_3 &&
+                                                $product->productDetail->section_paragraph_3 &&
+                                                $product->productDetail->section_image_3)
+                                            <div class="col-lg-6 d-flex align-items-center px-5 mt-60">
+                                                <div class="text">
+                                                    <h3>{{ $product->productDetail->section_title_3 }}</h3>
+                                                    <p class="mb-15 mt-25" style="font-size: 0.8rem;">
+                                                        {{ $product->productDetail->section_paragraph_3 }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 d-flex align-items-center">
+                                                <img src="{{ asset('storage/' . $product->productDetail->section_image_3) }}"
+                                                    alt="image mirroir">
+                                            </div>
+                                        @endif
+                                        @if (
+                                            $product->productDetail->lumiere_img1 &&
+                                                $product->productDetail->lumiere_desc1 &&
+                                                $product->productDetail->lumiere_img2 &&
+                                                $product->productDetail->lumiere_desc1 &&
+                                                $product->productDetail->lumiere_img3 &&
+                                                $product->productDetail->lumiere_desc1)
+                                            <div class="button-group  mt-60">
+                                                <button id="btn1" class="home-custom-btn active"
+                                                    onclick="changeImage('{{ asset('storage/' . $product->productDetail->lumiere_img1) }}', '{{ addslashes($product->productDetail->lumiere_desc1) }}', 'btn1')">
+                                                    Miroir Lumière Brillante
+                                                </button>
+                                                <button id="btn2" class="home-custom-btn"
+                                                    onclick="changeImage('{{ asset('storage/' . $product->productDetail->lumiere_img2) }}', '{{ addslashes($product->productDetail->lumiere_desc2) }}', 'btn2')">
+                                                    Miroir Lumière Combinée
+                                                </button>
+                                                <button id="btn3" class="home-custom-btn"
+                                                    onclick="changeImage('{{ asset('storage/' . $product->productDetail->lumiere_img3) }}', '{{ addslashes($product->productDetail->lumiere_desc3) }}', 'btn3')">
+                                                    Miroir Lumière Rétro
+                                                </button>
+                                            </div>
+
+
+
+                                            <div class="image-container px-5 pt-15 col-lg-4 d-flex align-items-center"
+                                                style="margin-top: 20px;">
+                                                <img id="displayedImage"
+                                                    src="{{ asset('storage/' . $product->productDetail->lumiere_img1) }}"
+                                                    alt="Displayed Image" style="max-width: 100%; height: auto;">
+                                            </div>
+                                            <div class="col-lg-8 d-flex align-items-center px-5">
+                                                <div class="text">
+                                                    <p class="mb-15 mt-25" style="font-size: 0.8rem;"
+                                                        id="displayedParagraph">
+                                                        {{ $product->productDetail->lumiere_desc1 }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if ($product->productDetail->parg_section5)
+                                            <div class="col-12  mt-60">
+                                                <p class="mb-15 mt-25" style="font-size: 0.8rem;">
+                                                    {{ $product->productDetail->parg_section5 }}
+                                                </p>
+                                            </div>
+
+                                            <div class="col-lg-8 d-flex align-items-center px-5">
+                                                <div class="text">
+                                                    <h3>{{ $product->productDetail->titre_section_5 }}</h3>
+                                                    <p class="mb-15 mt-25" style="font-size: 0.8rem;">
+                                                        {{ $product->productDetail->parg1_section_5 }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="image-container px-5 pt-15 col-lg-4 d-flex align-items-center"
+                                                style="margin-top: 20px;">
+                                                <img src="{{ asset('storage/' . $product->productDetail->img1_section_5) }}"
+                                                    alt="Displayed Image" style="max-width: 100%; height: auto;">
+                                            </div>
+
+
+                                            <div class="image-container px-5 pt-15 col-lg-4 d-flex align-items-center"
+                                                style="margin-top: 20px;">
+                                                <img src="{{ asset('storage/' . $product->productDetail->img2_section_5) }}"
+                                                    alt="Displayed Image" style="max-width: 100%; height: auto;">
+                                            </div>
+                                            <div class="col-lg-8 d-flex align-items-center px-5">
+                                                <div class="text">
+                                                    <p class="mb-15 mt-25" style="font-size: 0.8rem;">
+                                                        {{ $product->productDetail->parg2_section_5 }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if (
+                                            $product->productDetail->titre_section_6 &&
+                                                $product->productDetail->parg1_section_6 &&
+                                                $product->productDetail->img2_section_6)
+                                            <h3 class="col-12  mt-60">{{ $product->productDetail->titre_section_6 }}
+                                            </h3>
+                                            <p class="mb-15 mt-25 col-12" style="font-size: 0.8rem;">
+                                                {{ $product->productDetail->parg1_section_6 }}
+                                            </p>
+                                            <div class="image-container px-5 pt-15 col-lg-12 d-flex align-items-center"
+                                                style="margin-top: 20px;">
+                                                <img class="col-12"
+                                                    src="{{ asset('storage/' . $product->productDetail->img2_section_6) }}"
+                                                    alt="Displayed Image" style="max-width: 100%; height: auto;">
+                                            </div>
+                                        @endif
+
+                                        @if (
+                                            $product->productDetail->titre_section_7 &&
+                                                $product->productDetail->parg1_section_7 &&
+                                                $product->productDetail->img2_section_7)
+                                            <h3 class="col-12 mt-60">{{ $product->productDetail->titre_section_7 }}
+                                            </h3>
+                                            <p class="mb-15 mt-25 col-12" style="font-size: 0.8rem;">
+                                                {{ $product->productDetail->parg1_section_7 }}
+                                            </p>
+                                            <div class="image-container px-5 pt-15 col-lg-12 d-flex align-items-center"
+                                                style="margin-top: 20px;">
+                                                <img class="col-12"
+                                                    src="{{ asset('storage/' . $product->productDetail->img2_section_7) }}"
+                                                    alt="Displayed Image" style="max-width: 100%; height: auto;">
+                                            </div>
+                                        @endif
+
                                     </div>
                                 </div>
                             </div>
@@ -201,19 +418,85 @@
                                 <div class="item info">
                                     <ul class="rest">
                                         <li class="d-flex align-items-center mb-15">
-                                            <span class="text-u fw-500">Color</span>
+                                            <span class="text-u fw-500">Cadre</span>
                                             <span class="line"></span>
-                                            <span class="ml-auto">Blue, Gray, Green, Red</span>
+                                            <span class="ml-auto">Aluminium (disponible en finition apparente ou
+                                                discrète)</span>
                                         </li>
                                         <li class="d-flex align-items-center mb-15">
-                                            <span class="text-u fw-500">Size</span>
+                                            <span class="text-u fw-500">Couverture Arrière</span>
                                             <span class="line"></span>
-                                            <span class="ml-auto">Large, Medium, Small</span>
+                                            <span class="ml-auto">PVC blanc étanche, protection contre
+                                                l'humidité</span>
+                                        </li>
+                                        @if ($product->interrepteur == '1' && $product->led == '1')
+                                            <li class="d-flex align-items-center mb-15">
+                                                <span class="text-u fw-500">Couleurs de LED</span>
+                                                <span class="line"></span>
+                                                <span class="ml-auto">Blanc Chaud (2700K - 3000K) : Ambiance
+                                                    chaleureuse
+                                                    <br> Blanc Neutre (4000K - 4500K) : Lumière naturelle
+                                                    <br>Blanc Froid (5000K - 5500K) : Lumière vive et claire</span>
+                                            </li>
+                                        @endif
+                                        <li class="d-flex align-items-center mb-15">
+                                            <span class="text-u fw-500">Couverture Arrière</span>
+                                            <span class="line"></span>
+                                            <span class="ml-auto">PVC blanc étanche, protection contre
+                                                l'humidité</span>
+                                        </li>
+                                        @if ($product->interrepteur == '1' && $product->led == '1')
+                                            <li class="d-flex align-items-center mb-15">
+                                                <span class="text-u fw-500">Éclairage</span>
+                                                <span class="line"></span>
+                                                <span class="ml-auto">LED basse consommation, longue durée de
+                                                    vie</span>
+                                            </li>
+                                        @endif
+                                        @if ($product->interrepteur == '1' && $product->led == '1')
+                                            <li class="d-flex align-items-center mb-15">
+                                                <span class="text-u fw-500">style d'Éclairage</span>
+                                                <span class="line"></span>
+                                                <span class="ml-auto">Lumière Brillante : Éclairage direct autour du
+                                                    miroir
+                                                    <br> Lumière Rétro : Éclairage indirect sur les quatre côtés (effet
+                                                    lèche-mur)
+                                                    <br> Lumière Combinée : Combinaison d’éclairage direct et
+                                                    indirect</span>
+                                            </li>
+                                        @endif
+                                        <li class="d-flex align-items-center mb-15">
+                                            <span class="text-u fw-500">Matériau Miroir</span>
+                                            <span class="line"></span>
+                                            <span class="ml-auto">Miroir de haute qualité, AGC</span>
+                                        </li>
+                                        @if ($product->interrepteur == '1' && $product->led == '1')
+                                            <li class="d-flex align-items-center mb-15">
+                                                <span class="text-u fw-500">Options de Contrôle </span>
+                                                <span class="line"></span>
+                                                <span class="ml-auto"> Sans Interrupteur ou Interrupteur tactile</span>
+                                            </li>
+                                        @endif
+
+                                        <li class="d-flex align-items-center mb-15">
+                                            <span class="text-u fw-500">Dimensions </span>
+                                            <span class="line"></span>
+                                            <span class="ml-auto">Sur mesure, selon les modèles</span>
                                         </li>
                                         <li class="d-flex align-items-center mb-15">
-                                            <span class="text-u fw-500">Material</span>
+                                            <span class="text-u fw-500">Installation </span>
                                             <span class="line"></span>
-                                            <span class="ml-auto">Cotton, Lather, Silk</span>
+                                            <span class="ml-auto"> Montage mural avec kit de fixation inclus</span>
+                                        </li>
+                                        <li class="d-flex align-items-center mb-15">
+                                            <span class="text-u fw-500">Indice de Protection </span>
+                                            <span class="line"></span>
+                                            <span class="ml-auto"> IP44 (protégé contre les projections d'eau)</span>
+                                        </li>
+                                        <li class="d-flex align-items-center mb-15">
+                                            <span class="text-u fw-500">Certifications </span>
+                                            <span class="line"></span>
+                                            <span class="ml-auto">Conforme aux normes</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -477,10 +760,10 @@
 
         // Initial price calculation
         updatePrice();
-     // Handle Add to Cart click
-     $('.add-to-cart').on('click', function(e) {
+        // Handle Add to Cart click
+        $('.add-to-cart').on('click', function(e) {
             e.preventDefault();
-            
+
             var productId = $(this).data('product-id');
             var langeur = $('#langeur').val();
             var largeur = $('#largeur').val();
@@ -507,7 +790,7 @@
             };
 
             $.ajax({
-                url: '{{ route("cart.add") }}',
+                url: '{{ route('cart.add') }}',
                 method: 'POST',
                 data: data,
                 success: function(response) {
@@ -538,6 +821,108 @@
 
         });
     });
+    let images = @json(
+        $product_imgs->map(function ($image) {
+            return asset('storage/' . $image->image_path);
+        }));
+    let currentIndex = 0;
+
+    function openModal() {
+    var modal = document.getElementById('imageModal');
+    var mainImage = document.getElementById('mainImage');
+    
+    modal.style.display = "flex";
+    modal.querySelector('#modalImage').src = mainImage.src;
+    
+    // Disable scrolling on the body
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    var modal = document.getElementById('imageModal');
+    
+    modal.style.display = "none";
+    
+    // Enable scrolling on the body
+    document.body.style.overflow = 'auto';
+}
+
+    function changeSlide(direction) {
+        currentIndex = (currentIndex + direction + images.length) % images.length;
+        console.log(currentIndex)
+        var modalImage = document.getElementById('modalImage');
+        modalImage.src = images[currentIndex];
+    }
 </script>
+<style>
+    .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .home-custom-btn {
+        background: none;
+        color: #fff;
+        border: 0;
+        border-bottom: 2px solid #ffffff8f;
+        padding: 1px 9px;
+    }
+
+    .home-custom-btn.active {
+        border-bottom: 2px solid #fff;
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        /* Full height of the viewport */
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        z-index: 1000;
+        /* Prevent scrolling */
+    }
+
+    .modal img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+
+    .close,
+    .prev,
+    .next {
+        position: absolute;
+        top: 50%;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+        transform: translateY(-50%);
+        padding: 10px;
+    }
+
+    .close {
+        top: 10px;
+        right: 20px;
+        transform: none;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+</style>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>

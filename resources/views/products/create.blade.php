@@ -43,6 +43,14 @@
                     </select>
                 </div>
                 <div class="mb-3">
+                    <label for="product_details_id" class="form-label">product details template</label>
+                    <select class="form-select" id="product_details_id" name="product_details_id" required>
+                        @foreach ($details as $detail)
+                            <option value="{{ $detail->id }}">{{ $detail->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
                 </div>
